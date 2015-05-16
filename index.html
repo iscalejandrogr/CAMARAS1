@@ -13,7 +13,7 @@ $(document).raedy(function (){
     document.addEventListener("deviceready", function(){
       //navigator.notification.alert("funciona");
       $("#TomarFoto").tap(function(){
-	navigator.device.captura.captureImage(function (mediaFiles){
+	navigator.device.capture.captureImage(function (mediaFiles){
 	 path=mediaFiles[0].fullPath;
 	 $("#Foto").append("<img src="+path+" width='100%' />").attr("rel",path);
 	}, function (error){
