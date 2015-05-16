@@ -1,0 +1,42 @@
+<!DOCTYPE HTML-->
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="css/jquery-ui.css">
+<link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
+<script src="phonegap.js"></script>
+<script type="text/javascript" src="js/jquery-ui.js"></script>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>  
+<script type="text/javascript">
+$(document).raedy(function (){
+    document.addEventListener("deviceready", function(){
+      //navigator.notification.alert("funciona");
+      $("#TomarFoto").tap(function(){
+	navigator.device.captura.captureImage(function (mediaFiles){
+	 path=mediaFiles[0].fullPath;
+	 $("#Foto").append("<img src="+path+" width='100%' />").attr("rel",path);
+	}, function (error){
+	  navigator.notification.alert("Error"+error.code, null, "CAtura de Error");
+	}, {limit:1});
+      });
+    }, false);
+
+});
+</script>
+</head>
+<body>
+<div data-role="page" id="principal">
+  <div data-role="header">
+    <p>Manejo de camara</p>
+  </div>
+  <div data-role="content">
+    <input type="button" id="TomarFoto" value="Tomar Foto">
+    <div id="Foto"></div>
+  </div>
+  <div data-role="footer">
+    <p>pie de página</p>
+  </div>
+</div>
+</body>
+</html>
